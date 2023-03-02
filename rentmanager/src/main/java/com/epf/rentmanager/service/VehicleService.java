@@ -1,13 +1,13 @@
 package com.epf.rentmanager.service;
 
-import java.util.List;
-
+import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
-import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
+
+import java.util.List;
+
 
 public class VehicleService {
 
@@ -28,18 +28,43 @@ public class VehicleService {
 	
 	
 	public long create(Vehicle vehicle) throws ServiceException {
-		// TODO: créer un véhicule
-		
+		try{
+			return VehicleDao.getInstance().create(vehicle);
+		} catch (DaoException e){
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+
 	}
 
 	public Vehicle findById(long id) throws ServiceException {
-		// TODO: récupérer un véhicule par son id
-		
+		try {
+			return VehicleDao.getInstance().findById(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+
+	}
+
+	public long delete (long id) throws ServiceException {
+		try {
+			return VehicleDao.getInstance().delete((id));
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
 	}
 
 	public List<Vehicle> findAll() throws ServiceException {
-		// TODO: récupérer tous les clients
-		
+		try{
+			return VehicleDao.getInstance().findAll();
+		} catch (DaoException e){
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+
+
 	}
 	
 }

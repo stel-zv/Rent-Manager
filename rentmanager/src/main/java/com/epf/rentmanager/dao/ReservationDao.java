@@ -1,8 +1,6 @@
 package com.epf.rentmanager.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,7 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.persistence.ConnectionManager;
+
 
 public class ReservationDao {
 
@@ -37,7 +39,6 @@ public class ReservationDao {
 		return 0;
 	}
 
-	
 	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
 		return new ArrayList<Reservation>();
 	}
@@ -47,6 +48,25 @@ public class ReservationDao {
 	}
 
 	public List<Reservation> findAll() throws DaoException {
-		return new ArrayList<Reservation>();
+		List <Reservation> reservations = new ArrayList <Reservation>();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(FIND_RESERVATIONS_QUERY);
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				int client_id = rs.getInt("client_id");
+				int vehicle_id = rs.getInt("vehicle_id");
+				LocalDate debut = rs.getDate("debut").toLocalDate();
+				LocalDate fin = rs.getDate("fin").toLocalDate();
+
+				reservations.add(new Reservation(id,client_id,vehicle_id, debut, fin));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return reservations;
 	}
 }
