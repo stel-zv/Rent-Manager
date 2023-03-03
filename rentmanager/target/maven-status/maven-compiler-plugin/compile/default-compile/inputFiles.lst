@@ -4,12 +4,15 @@
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/dao/ClientDao.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/persistence/FillDatabase.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/main/main.java
+/Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/servlet/UserCreateServlet.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/model/Vehicle.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/persistence/ConnectionManager.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/service/ClientService.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/servlet/HomeServlet.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/model/Client.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/dao/VehicleDao.java
+/Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/servlet/VehicleServlet.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/service/VehicleService.java
+/Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/servlet/UserServlet.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/dao/ReservationDao.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/exception/DaoException.java

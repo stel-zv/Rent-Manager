@@ -1,28 +1,62 @@
 package com.epf.rentmanager.model;
 
 
+import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.VehicleService;
+
 import java.time.LocalDate;
+
+import java.util.List;
 
 public class Reservation {
 
     private int id;
-    private int client_id;
-    private int vehicle_id;
+    private Client client;
+    private Vehicle vehicle;
     private LocalDate debut;
     private LocalDate fin;
 
-    public Reservation(int id, int client_id, int vehicle_id, LocalDate debut, LocalDate fin) {
+    public Reservation(int id, Vehicle vehicle, Client client, LocalDate debut, LocalDate fin) {
         this.id = id;
-        this.client_id = client_id;
-        this.vehicle_id = vehicle_id;
+        this.client = client;
+        this.vehicle = vehicle;
         this.debut = debut;
         this.fin = fin;
     }
 
-    public Reservation(int client_id, int vehicle_id, LocalDate debut, LocalDate fin) {
-        this.client_id = client_id;
-        this.vehicle_id = vehicle_id;
+    public Reservation(int id, int id_client, int id_vehicle, LocalDate debut, LocalDate fin) throws ServiceException {
+        this.id = id;
+        this.client = ClientService.getInstance().findById(id_client);
+        this.vehicle = VehicleService.getInstance().findById(id_vehicle);
         this.debut = debut;
         this.fin = fin;
+    }
+
+    public Reservation(int id_client, int id_vehicle, LocalDate debut, LocalDate fin) throws ServiceException {
+        this.client = ClientService.getInstance().findById(id_client);
+        this.vehicle = VehicleService.getInstance().findById(id_vehicle);
+        this.debut = debut;
+        this.fin = fin;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public LocalDate getDebut() {
+        return debut;
+    }
+
+    public LocalDate getFin() {
+        return fin;
     }
 }

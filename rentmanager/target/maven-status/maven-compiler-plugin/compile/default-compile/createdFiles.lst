@@ -1,2 +1,3 @@
+com/epf/rentmanager/servlet/UserCreateServlet.class
 com/epf/rentmanager/servlet/UserServlet.class
 com/epf/rentmanager/servlet/VehicleServlet.class

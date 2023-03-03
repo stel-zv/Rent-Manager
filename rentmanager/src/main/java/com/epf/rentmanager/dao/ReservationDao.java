@@ -1,22 +1,22 @@
 package com.epf.rentmanager.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import com.epf.rentmanager.service.ClientService;
 
 
 public class ReservationDao {
 
 	private static ReservationDao instance = null;
+
 	private ReservationDao() {}
 	public static ReservationDao getInstance() {
 		if(instance == null) {
@@ -32,11 +32,36 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 		
 	public long create(Reservation reservation) throws DaoException {
-		return 0;
+		try{
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(CREATE_RESERVATION_QUERY,Statement.RETURN_GENERATED_KEYS);
+
+			statement.setLong(1,reservation.getClient().getId());
+			statement.setLong(2,reservation.getVehicle().getId());
+			statement.setDate(3,Date.valueOf(reservation.getDebut()));
+			statement.setDate(4,Date.valueOf(reservation.getFin()));
+
+			return statement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
+
 	
-	public long delete(Reservation reservation) throws DaoException {
-		return 0;
+	public long delete(long id) throws DaoException {
+		try{
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(DELETE_RESERVATION_QUERY);
+			statement.setLong(1,id);
+			return statement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
@@ -65,6 +90,8 @@ public class ReservationDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (ServiceException e) {
 			throw new RuntimeException(e);
 		}
 		return reservations;
