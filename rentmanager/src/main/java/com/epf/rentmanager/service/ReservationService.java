@@ -58,4 +58,34 @@ public class ReservationService {
 
     }
 
+    public List<Reservation> findResaByVehicleId(int id_vehicle) throws ServiceException {
+        try{
+            return ReservationDao.getInstance().findResaByVehicleId(id_vehicle);
+        } catch (DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
+    }
+
+    public List<Reservation> findResaByClientId(int id_client) throws ServiceException {
+        try{
+            return ReservationDao.getInstance().findResaByClientId(id_client);
+        } catch (DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
+
+    }
+
+    public Reservation findResaById(int id) throws ServiceException {
+        try{
+            return ReservationDao.getInstance().findResaById(id);
+        } catch (DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
+
+    }
+
+
 }

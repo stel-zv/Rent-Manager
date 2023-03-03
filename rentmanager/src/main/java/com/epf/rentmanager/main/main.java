@@ -5,6 +5,7 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import com.epf.rentmanager.servlet.HomeServlet;
 
@@ -29,7 +30,7 @@ public class main {
 
             //Montrer tous les clients
             List<Client> clients = ClientService.getInstance().findAll();
-            System.out.println(clients);
+           // System.out.println(clients);
 
             //Montrer un seul client
             Client client = ClientService.getInstance().findById(4);
@@ -42,20 +43,27 @@ public class main {
 
             //Montrer tous les vehicules
             List<Vehicle> vehicles = VehicleService.getInstance().findAll();
-            System.out.println(vehicles);
+            //System.out.println(vehicles);
 
             //Montrer un seul vehicule
             Vehicle vehicle = VehicleService.getInstance().findById(2);
                 //System.out.println(vehicle);
 
             //Ajout reservation
-                //Reservation reservation = new Reservation()
+                Reservation reservation = new Reservation(1,1,naissancestella,naissancestella);
+                //ReservationService.getInstance().create(reservation);
+                //List <Reservation> resas = ReservationService.getInstance().findAll();
+                //System.out.println (resas);
+                //System.out.println (resas.size());
+                //System.out.println(ReservationService.getInstance().findResaById(1));
+                System.out.println(ReservationService.getInstance().findResaByVehicleId(1));
+                System.out.println(ReservationService.getInstance().findResaByClientId(1));
 
             //counter clients
             int count_clients = ClientService.getInstance().findAll().size();
             int count_vehicles = VehicleService.getInstance().findAll().size();
-            System.out.println (count_clients);
-            System.out.println (count_vehicles);
+           // System.out.println (count_clients);
+            //System.out.println (count_vehicles);
 
            
 

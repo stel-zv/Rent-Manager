@@ -11,6 +11,7 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.persistence.ConnectionManager;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 
 
 public class ReservationDao {
@@ -30,6 +31,7 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
+	private static final String FIND_RESERVATION_BY_ID = "SELECT client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
 		
 	public long create(Reservation reservation) throws DaoException {
 		try{
@@ -64,13 +66,86 @@ public class ReservationDao {
 
 	}
 
-	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
-		return new ArrayList<Reservation>();
+
+
+
+	public Reservation findResaById(int Id) throws DaoException {
+		Reservation reservation = new Reservation();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(FIND_RESERVATION_BY_ID);
+			statement.setLong(1,Id);
+			ResultSet rs = statement.executeQuery();
+
+				if (rs.next()) {
+				int client_id = rs.getInt("client_id");
+				int vehicle_id = rs.getInt("vehicle_id");
+				LocalDate debut = rs.getDate("debut").toLocalDate();
+				LocalDate fin = rs.getDate("fin").toLocalDate();
+
+				reservation = new Reservation(Id,client_id,vehicle_id, debut, fin);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
+		}
+		return reservation;
 	}
-	
-	public List<Reservation> findResaByVehicleId(long vehicleId) throws DaoException {
-		return new ArrayList<Reservation>();
+
+
+	public List<Reservation> findResaByVehicleId(int vehicleId) throws DaoException {
+		List <Reservation> reservations = new ArrayList<>();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(FIND_RESERVATIONS_BY_VEHICLE_QUERY);
+			statement.setLong(1,vehicleId);
+			ResultSet rs = statement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				int client_id = rs.getInt("client_id");
+				LocalDate debut = rs.getDate("debut").toLocalDate();
+				LocalDate fin = rs.getDate("fin").toLocalDate();
+
+				reservations.add(new Reservation(id,client_id,vehicleId, debut, fin));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
+		}
+		return reservations;
 	}
+
+	public List<Reservation> findResaByClientId(int clientId) throws DaoException {
+		List <Reservation> reservations = new ArrayList<>();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
+			statement.setLong(1,clientId);
+			ResultSet rs = statement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				int vehicle_id = rs.getInt("vehicle_id");
+				LocalDate debut = rs.getDate("debut").toLocalDate();
+				LocalDate fin = rs.getDate("fin").toLocalDate();
+
+				reservations.add(new Reservation(id,clientId,vehicle_id, debut, fin));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
+		}
+		return reservations;
+	}
+
+
 
 	public List<Reservation> findAll() throws DaoException {
 		List <Reservation> reservations = new ArrayList <Reservation>();

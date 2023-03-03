@@ -40,6 +40,10 @@ public class Reservation {
         this.fin = fin;
     }
 
+    public Reservation() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -58,5 +62,16 @@ public class Reservation {
 
     public LocalDate getFin() {
         return fin;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", client=" + client +
+                ", vehicle=" + vehicle +
+                ", debut=" + debut +
+                ", fin=" + fin +
+                '}';
     }
 }
