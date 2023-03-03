@@ -16,3 +16,11 @@
 0:0:0:0:0:0:0:1 - - [02/Mar/2023:09:49:07 +0100] "GET /rentmanager/users HTTP/1.1" 404 985 http-bio-8080-exec-1 2
 0:0:0:0:0:0:0:1 - - [02/Mar/2023:09:49:31 +0100] "GET /rentmanager/resources/bower_components/bootstrap/dist/css/bootstrap.min.css HTTP/1.1" 404 1101 http-bio-8080-exec-1 2
 0:0:0:0:0:0:0:1 - - [02/Mar/2023:09:49:31 +0100] "GET /rentmanager/resources/bower_components/Ionicons/css/ionicons.min.css HTTP/1.1" 404 1087 http-bio-8080-exec-10 2
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager/ HTTP/1.1" 302 - http-bio-8080-exec-3 116
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager/home HTTP/1.1" 200 6192 http-bio-8080-exec-4 141
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager/resources/bower_components/bootstrap/dist/css/bootstrap.min.css HTTP/1.1" 404 1101 http-bio-8080-exec-5 4
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager/resources/bower_components/Ionicons/css/ionicons.min.css HTTP/1.1" 404 1087 http-bio-8080-exec-6 3
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager/resources/bower_components/bootstrap/dist/js/bootstrap.min.js HTTP/1.1" 404 1097 http-bio-8080-exec-2 3
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager/resources/js/demo.js HTTP/1.1" 404 1015 http-bio-8080-exec-10 1
+0:0:0:0:0:0:0:1 - - [02/Mar/2023:10:43:38 +0100] "GET /rentmanager/resources/bower_components/fastclick/lib/fastclick.js HTTP/1.1" 404 1081 http-bio-8080-exec-7 1

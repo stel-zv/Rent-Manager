@@ -6,6 +6,7 @@ import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
+import com.epf.rentmanager.servlet.HomeServlet;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -49,6 +50,14 @@ public class main {
 
             //Ajout reservation
                 //Reservation reservation = new Reservation(1,1,)
+
+            //counter clients
+            int count_clients = ClientService.getInstance().findAll().size();
+            int count_vehicles = VehicleService.getInstance().findAll().size();
+            System.out.println (count_clients);
+            System.out.println (count_vehicles);
+
+           
 
 
         } catch (ServiceException e) {
