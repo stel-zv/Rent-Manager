@@ -26,11 +26,14 @@ public class main {
             LocalDate naissancestella = LocalDate.parse(date, formatter);
             Client stella = new Client ("zaborov", "stella", "stella.zaborov@gmail.com",naissancestella);
                 //ClientService.getInstance().create(stella);
-               //ClientService.getInstance().delete(6);
+               ClientService.getInstance().delete(10);
+            ClientService.getInstance().delete(11);
+            ClientService.getInstance().delete(12);
+            ClientService.getInstance().delete(13);
 
             //Montrer tous les clients
             List<Client> clients = ClientService.getInstance().findAll();
-           // System.out.println(clients);
+            System.out.println(clients);
 
             //Montrer un seul client
             Client client = ClientService.getInstance().findById(4);
@@ -56,8 +59,8 @@ public class main {
                 //System.out.println (resas);
                 //System.out.println (resas.size());
                 //System.out.println(ReservationService.getInstance().findResaById(1));
-                System.out.println(ReservationService.getInstance().findResaByVehicleId(1));
-                System.out.println(ReservationService.getInstance().findResaByClientId(1));
+                //System.out.println(ReservationService.getInstance().findResaByVehicleId(1));
+                //System.out.println(ReservationService.getInstance().findResaByClientId(1));
 
             //counter clients
             int count_clients = ClientService.getInstance().findAll().size();
