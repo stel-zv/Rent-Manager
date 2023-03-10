@@ -1,6 +1,8 @@
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/model/Reservation.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/exception/ServiceException.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/utils/IOUtils.java
+/Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/configuration/AppConfiguration.java
+/Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/servlet/VehicleCreateServlet.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/dao/ClientDao.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/persistence/FillDatabase.java
 /Users/stellazaborov/Desktop/EPF/S8/Langage_java/RentManager2/rentmanager/src/main/java/com/epf/rentmanager/main/main.java
