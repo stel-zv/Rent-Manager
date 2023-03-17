@@ -17,15 +17,23 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 
 @WebServlet("/users/create")
 public class UserCreateServlet extends HttpServlet {
-    private ClientService clientservice;
+    @Autowired
+    ClientService clientService;
 
     /**
      *
      */
+    @Override
+    public void init() throws ServletException{
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -40,7 +48,7 @@ public class UserCreateServlet extends HttpServlet {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-d");
             Client client = new Client(request.getParameter("last_name"),request.getParameter("first_name"),request.getParameter("email"), LocalDate.parse(request.getParameter("naissance"), format));
             System.out.println(client);
-            clientservice.create(client);
+            clientService.create(client);
         }
         catch (ServiceException e) {
             e.printStackTrace();

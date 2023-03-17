@@ -18,15 +18,24 @@ import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 
 @WebServlet("/cars/create")
 public class VehicleCreateServlet extends HttpServlet {
-    private VehicleService vehicleservice;
+
+    @Autowired
+    VehicleService vehicleService;
 
     /**
      *
      */
+    @Override
+    public void init() throws ServletException{
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -41,7 +50,7 @@ public class VehicleCreateServlet extends HttpServlet {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-d");
             Vehicle vehicle = new Vehicle(request.getParameter("manufacturer"),Integer.parseInt(request.getParameter("seats")));
             System.out.println(vehicle);
-            vehicleservice.create(vehicle);
+            vehicleService.create(vehicle);
         }
         catch (ServiceException e) {
             e.printStackTrace();

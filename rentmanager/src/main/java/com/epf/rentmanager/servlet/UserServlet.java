@@ -14,22 +14,32 @@ import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
 
-    private ClientService clientservice;
+    @Autowired
+    ClientService clientService;
 
     /**
      *
      */
+
+    @Override
+    public void init() throws ServletException{
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
+
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            request.setAttribute("clients",this.clientservice.findAll());
+            request.setAttribute("clients",this.clientService.findAll());
         }
         catch (ServiceException e) {
             e.printStackTrace();
