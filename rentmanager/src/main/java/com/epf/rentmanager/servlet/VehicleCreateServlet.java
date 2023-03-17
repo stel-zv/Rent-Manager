@@ -22,7 +22,7 @@ import com.epf.rentmanager.service.VehicleService;
 
 @WebServlet("/cars/create")
 public class VehicleCreateServlet extends HttpServlet {
-    private VehicleService vehicleservice = VehicleService.getInstance();
+    private VehicleService vehicleservice;
 
     /**
      *

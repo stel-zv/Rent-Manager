@@ -1,5 +1,5 @@
 package com.epf.rentmanager.main;
-
+import com.epf.rentmanager.configuration.AppConfiguration;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
@@ -8,6 +8,8 @@ import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import com.epf.rentmanager.servlet.HomeServlet;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -18,6 +20,11 @@ public class main {
 
         try {
 
+            ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+            ClientService clientService = context.getBean(ClientService.class);
+            VehicleService vehicleService = context.getBean(VehicleService.class);
+           // ReservationService reservationService = context.getBean(ReservationService.class);
+
             //Date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
             String date = "16/09/2001";
@@ -25,18 +32,13 @@ public class main {
             //Ajout et suppression client
             LocalDate naissancestella = LocalDate.parse(date, formatter);
             Client stella = new Client ("zaborov", "stella", "stella.zaborov@gmail.com",naissancestella);
-                //ClientService.getInstance().create(stella);
-               ClientService.getInstance().delete(10);
-            ClientService.getInstance().delete(11);
-            ClientService.getInstance().delete(12);
-            ClientService.getInstance().delete(13);
 
             //Montrer tous les clients
-            List<Client> clients = ClientService.getInstance().findAll();
+            List<Client> clients = clientService.findAll();
             System.out.println(clients);
 
             //Montrer un seul client
-            Client client = ClientService.getInstance().findById(4);
+            Client client = clientService.findById(4);
             //System.out.println(client);
 
             //Ajout et suppression vehicule
@@ -45,15 +47,15 @@ public class main {
               //VehicleService.getInstance().delete(6);
 
             //Montrer tous les vehicules
-            List<Vehicle> vehicles = VehicleService.getInstance().findAll();
+            List<Vehicle> vehicles = vehicleService.findAll();
             //System.out.println(vehicles);
 
             //Montrer un seul vehicule
-            Vehicle vehicle = VehicleService.getInstance().findById(2);
+            Vehicle vehicle = vehicleService.findById(2);
                 //System.out.println(vehicle);
 
             //Ajout reservation
-                Reservation reservation = new Reservation(1,1,naissancestella,naissancestella);
+                //Reservation reservation = new Reservation(1,1,naissancestella,naissancestella);
                 //ReservationService.getInstance().create(reservation);
                 //List <Reservation> resas = ReservationService.getInstance().findAll();
                 //System.out.println (resas);
@@ -63,8 +65,8 @@ public class main {
                 //System.out.println(ReservationService.getInstance().findResaByClientId(1));
 
             //counter clients
-            int count_clients = ClientService.getInstance().findAll().size();
-            int count_vehicles = VehicleService.getInstance().findAll().size();
+            int count_clients = clientService.findAll().size();
+            int count_vehicles = vehicleService.findAll().size();
            // System.out.println (count_clients);
             //System.out.println (count_vehicles);
 

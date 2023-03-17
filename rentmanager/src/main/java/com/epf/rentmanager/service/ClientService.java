@@ -5,29 +5,36 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.dao.ClientDao;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+@Service
 
 public class ClientService {
 
 	private ClientDao clientDao;
-	public static ClientService instance;
+	//public static ClientService instance;
 	
-	private ClientService() {
+	/*private ClientService() {
 		this.clientDao = ClientDao.getInstance();
-	}
+	}*/
 	
-	public static ClientService getInstance() {
+	/*public static ClientService () {
 		if (instance == null) {
 			instance = new ClientService();
 		}
 		
 		return instance;
+	}*/
+	private ClientService(ClientDao clientDao){
+		this.clientDao=clientDao;
 	}
 
 	public long create(Client client) throws ServiceException {
 		try{
-			return ClientDao.getInstance().create(client);
+			//return ClientDao.getInstance().create(client);
+			return this.clientDao.create(client);
 		} catch (DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();
@@ -37,7 +44,8 @@ public class ClientService {
 
 	public long delete(long id) throws ServiceException {
 		try{
-			return ClientDao.getInstance().delete((id));
+			//return ClientDao.getInstance().delete((id));
+			return this.clientDao.delete(id);
 		} catch (DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();
@@ -47,7 +55,8 @@ public class ClientService {
 
 	public Client findById(long id) throws ServiceException {
 		try {
-			return ClientDao.getInstance().findById(id);
+			return this.clientDao.findById(id);
+			//return ClientDao.getInstance().findById(id);
 		} catch (DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();
@@ -57,7 +66,8 @@ public class ClientService {
 
 	public List<Client> findAll() throws ServiceException {
 		try{
-			return ClientDao.getInstance().findAll();
+			return this.clientDao.findAll();
+			//return ClientDao.getInstance().findAll();
 		} catch (DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();

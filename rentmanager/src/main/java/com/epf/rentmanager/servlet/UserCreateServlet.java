@@ -21,7 +21,7 @@ import com.epf.rentmanager.service.VehicleService;
 
 @WebServlet("/users/create")
 public class UserCreateServlet extends HttpServlet {
-    private ClientService clientservice = ClientService.getInstance();
+    private ClientService clientservice;
 
     /**
      *

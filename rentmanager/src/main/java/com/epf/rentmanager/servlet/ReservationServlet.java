@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/rents")
 public class ReservationServlet  extends HttpServlet {
-    private ReservationService reservationservice = ReservationService.getInstance();
+    private ReservationService reservationservice;
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

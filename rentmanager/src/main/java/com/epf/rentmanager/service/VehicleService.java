@@ -5,16 +5,17 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.VehicleDao;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class VehicleService {
 
 	private VehicleDao vehicleDao;
-	public static VehicleService instance;
+	//public static VehicleService instance;
 	
-	private VehicleService() {
+	/*private VehicleService() {
 		this.vehicleDao = VehicleDao.getInstance();
 	}
 	
@@ -24,12 +25,17 @@ public class VehicleService {
 		}
 		
 		return instance;
+	}*/
+
+	public VehicleService(VehicleDao vehicleDao){
+		this.vehicleDao=vehicleDao;
 	}
 	
 	
 	public long create(Vehicle vehicle) throws ServiceException {
 		try{
-			return VehicleDao.getInstance().create(vehicle);
+			return this.vehicleDao.create(vehicle);
+			//return VehicleDao.getInstance().create(vehicle);
 		} catch (DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();
@@ -39,7 +45,8 @@ public class VehicleService {
 
 	public Vehicle findById(long id) throws ServiceException {
 		try {
-			return VehicleDao.getInstance().findById(id);
+			return this.vehicleDao.findById(id);
+			//return VehicleDao.getInstance().findById(id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -49,7 +56,8 @@ public class VehicleService {
 
 	public long delete (long id) throws ServiceException {
 		try {
-			return VehicleDao.getInstance().delete((id));
+			return this.vehicleDao.delete(id);
+			//return VehicleDao.getInstance().delete((id));
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -58,7 +66,8 @@ public class VehicleService {
 
 	public List<Vehicle> findAll() throws ServiceException {
 		try{
-			return VehicleDao.getInstance().findAll();
+			return this.vehicleDao.findAll();
+			//return VehicleDao.getInstance().findAll();
 		} catch (DaoException e){
 			e.printStackTrace();
 			throw new ServiceException();

@@ -17,6 +17,7 @@ public class Reservation {
     private LocalDate debut;
     private LocalDate fin;
 
+
     public Reservation(int id, Vehicle vehicle, Client client, LocalDate debut, LocalDate fin) {
         this.id = id;
         this.client = client;
@@ -25,20 +26,6 @@ public class Reservation {
         this.fin = fin;
     }
 
-    public Reservation(int id, int id_client, int id_vehicle, LocalDate debut, LocalDate fin) throws ServiceException {
-        this.id = id;
-        this.client = ClientService.getInstance().findById(id_client);
-        this.vehicle = VehicleService.getInstance().findById(id_vehicle);
-        this.debut = debut;
-        this.fin = fin;
-    }
-
-    public Reservation(int id_client, int id_vehicle, LocalDate debut, LocalDate fin) throws ServiceException {
-        this.client = ClientService.getInstance().findById(id_client);
-        this.vehicle = VehicleService.getInstance().findById(id_vehicle);
-        this.debut = debut;
-        this.fin = fin;
-    }
 
     public Reservation() {
 

@@ -7,16 +7,18 @@ import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.dao.ReservationDao;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 
 public class ReservationService {
 
     private ReservationDao reservationDao;
-    public static ReservationService instance;
+    //public static ReservationService instance;
 
-    private ReservationService() {
+    /*private ReservationService() {
         this.reservationDao = ReservationDao.getInstance();
     }
 
@@ -26,11 +28,16 @@ public class ReservationService {
         }
 
         return instance;
+    }*/
+
+    public ReservationService(ReservationDao reservationDao){
+        this.reservationDao=reservationDao;
     }
 
     public long create(Reservation reservation) throws ServiceException {
         try{
-            return ReservationDao.getInstance().create(reservation);
+            return this.reservationDao.create(reservation);
+            //return ReservationDao.getInstance().create(reservation);
         } catch (DaoException e){
             e.printStackTrace();
             throw new ServiceException();
@@ -40,7 +47,8 @@ public class ReservationService {
 
     public long delete(long id) throws ServiceException {
         try{
-            return ReservationDao.getInstance().delete((id));
+            return this.reservationDao.delete(id);
+            //return ReservationDao.getInstance().delete((id));
         } catch (DaoException e){
             e.printStackTrace();
             throw new ServiceException();
@@ -50,7 +58,8 @@ public class ReservationService {
 
     public List<Reservation> findAll() throws ServiceException {
         try{
-            return ReservationDao.getInstance().findAll();
+            return this.reservationDao.findAll();
+            //return ReservationDao.getInstance().findAll();
         } catch (DaoException e){
             e.printStackTrace();
             throw new ServiceException();
@@ -60,7 +69,8 @@ public class ReservationService {
 
     public List<Reservation> findResaByVehicleId(int id_vehicle) throws ServiceException {
         try{
-            return ReservationDao.getInstance().findResaByVehicleId(id_vehicle);
+            return this.reservationDao.findResaByVehicleId(id_vehicle);
+            //return ReservationDao.getInstance().findResaByVehicleId(id_vehicle);
         } catch (DaoException e){
             e.printStackTrace();
             throw new ServiceException();
@@ -69,7 +79,8 @@ public class ReservationService {
 
     public List<Reservation> findResaByClientId(int id_client) throws ServiceException {
         try{
-            return ReservationDao.getInstance().findResaByClientId(id_client);
+            return this.reservationDao.findResaByClientId(id_client);
+            //return ReservationDao.getInstance().findResaByClientId(id_client);
         } catch (DaoException e){
             e.printStackTrace();
             throw new ServiceException();
@@ -79,7 +90,8 @@ public class ReservationService {
 
     public Reservation findResaById(int id) throws ServiceException {
         try{
-            return ReservationDao.getInstance().findResaById(id);
+            return this.reservationDao.findResaById(id);
+            //return ReservationDao.getInstance().findResaById(id);
         } catch (DaoException e){
             e.printStackTrace();
             throw new ServiceException();

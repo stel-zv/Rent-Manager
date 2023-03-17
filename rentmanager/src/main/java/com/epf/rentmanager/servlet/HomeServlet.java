@@ -19,8 +19,8 @@ import com.epf.rentmanager.service.VehicleService;
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
-	private ClientService clients;
-	private VehicleService vehicles;
+	private ClientService clientDao = new ClientService();
+	private VehicleService vehicleDao;
 
 	/**
 	 * 
@@ -30,8 +30,8 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try{
-			int count_client = this.clients.getInstance().findAll().size();
-			int count_vehicles = this.vehicles.getInstance().findAll().size();
+			int count_client = this.clientDao.findAll().size();
+			int count_vehicles = this.vehicleDao.findAll().size();
 
 			request.setAttribute("nb_clients",count_client);
 			request.setAttribute("nb_vehicles",count_vehicles);
