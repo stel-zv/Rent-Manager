@@ -21,7 +21,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 @WebServlet("/home")
 
 
-
 public class HomeServlet extends HttpServlet {
 
 	@Autowired
