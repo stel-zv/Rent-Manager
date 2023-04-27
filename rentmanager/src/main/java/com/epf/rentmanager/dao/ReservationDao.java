@@ -44,6 +44,9 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 	private static final String FIND_RESERVATION_BY_ID = "SELECT client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
+	private static final String UPDATE_RESERVATION_QUERY ="UPDATE Reservation SET client_id = ?, vehicle_id = ?, debut = ?, fin = ? WHERE id = ?;";
+
+
 
 
 	public long create(Reservation reservation) throws DaoException {
@@ -55,6 +58,27 @@ public class ReservationDao {
 			statement.setLong(2,reservation.getVehicle().getId());
 			statement.setDate(3,Date.valueOf(reservation.getDebut()));
 			statement.setDate(4,Date.valueOf(reservation.getFin()));
+
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public long update(Reservation reservation) throws DaoException {
+		try{
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(UPDATE_RESERVATION_QUERY,Statement.RETURN_GENERATED_KEYS);
+
+			statement.setLong(1,reservation.getClient().getId());
+			statement.setLong(2,reservation.getVehicle().getId());
+			statement.setDate(3,Date.valueOf(reservation.getDebut()));
+			statement.setDate(4,Date.valueOf(reservation.getFin()));
+			statement.setLong(5,reservation.getId());
 
 			long key = statement.executeUpdate();
 			connection.close();

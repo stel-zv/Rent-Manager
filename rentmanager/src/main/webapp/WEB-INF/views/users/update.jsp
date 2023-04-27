@@ -32,7 +32,7 @@
                                     <div class="col-sm-10">
                                         <input type="hidden" class="form-control" id="id" name="id" value="${client.id}" required>
                                     </div>
-                                </div>
+                            </div>
 
                                 <div class="form-group">
                                     <label for="last_name" class="col-sm-2 control-label">Nom</label>

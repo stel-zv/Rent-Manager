@@ -46,6 +46,17 @@ public class ReservationService {
 
     }
 
+    public long update(Reservation reservation) throws ServiceException {
+        try{
+            return this.reservationDao.update(reservation);
+            //return ReservationDao.getInstance().create(reservation);
+        } catch (DaoException e){
+            e.printStackTrace();
+            throw new ServiceException();
+        }
+
+    }
+
     public long delete(long id) throws ServiceException {
         try{
             return this.reservationDao.delete(id);
