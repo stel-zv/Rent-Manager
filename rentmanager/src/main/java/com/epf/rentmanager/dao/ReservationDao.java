@@ -56,7 +56,9 @@ public class ReservationDao {
 			statement.setDate(3,Date.valueOf(reservation.getDebut()));
 			statement.setDate(4,Date.valueOf(reservation.getFin()));
 
-			return statement.executeUpdate();
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,7 +72,10 @@ public class ReservationDao {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(DELETE_RESERVATION_QUERY);
 			statement.setLong(1,id);
-			return statement.executeUpdate();
+
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -99,6 +104,7 @@ public class ReservationDao {
 
 				reservation = new Reservation(Id,vehicle, client, debut, fin);
 			}
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -127,6 +133,7 @@ public class ReservationDao {
 
 				reservations.add(new Reservation(id,vehicle,client,debut, fin));
 			}
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -154,6 +161,8 @@ public class ReservationDao {
 
 				reservations.add(new Reservation(id,vehicle,client, debut, fin));
 			}
+			connection.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -207,6 +216,8 @@ public class ReservationDao {
 
 				reservations.add(new Reservation(id,vehicle,client, debut, fin));
 			}
+			connection.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

@@ -32,6 +32,8 @@ public class ClientDao {
 	private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
+	private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET nom = ?, prenom = ?, email = ?, naissance = ? WHERE id = ?;";
+
 
 
 	public long create(Client client) throws DaoException {
@@ -44,7 +46,9 @@ public class ClientDao {
 			statement.setString(3,client.getEmail());
 			statement.setDate(4,Date.valueOf(client.getNaissance()));
 
-			return statement.executeUpdate();
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
 
 		} catch (SQLException e) {
 				e.printStackTrace();
@@ -52,12 +56,35 @@ public class ClientDao {
 			}
 	}
 
+	public long update(Client client) throws DaoException{
+		try{
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT_QUERY,Statement.RETURN_GENERATED_KEYS);
+
+			statement.setString(1,client.getPrenom());
+			statement.setString(2,client.getNom());
+			statement.setString(3,client.getEmail());
+			statement.setDate(4,Date.valueOf(client.getNaissance()));
+			statement.setLong(5, client.getId());
+
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public long delete(long id) throws DaoException {
 		try{
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(DELETE_CLIENT_QUERY);
 			statement.setLong(1,id);
-			return statement.executeUpdate();
+
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,10 +109,12 @@ public class ClientDao {
 
 				clients.add(new Client(id,nom, prenom, email, naissance));
 			}
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+
 		return clients;
 	}
 
@@ -106,6 +135,7 @@ public class ClientDao {
 				client = new Client(id, nom, prenom, email, naissance);
 
 			}
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

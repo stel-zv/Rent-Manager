@@ -36,7 +36,9 @@ public class VehicleDao {
 			statement.setString(1,vehicle.getConstructeur());
 			statement.setInt(2,vehicle.getNb_places());
 
-			return statement.executeUpdate();
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,7 +51,10 @@ public class VehicleDao {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement statement = connection.prepareStatement(DELETE_VEHICLE_QUERY);
 			statement.setLong(1,id);
-			return statement.executeUpdate();
+
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,6 +78,8 @@ public class VehicleDao {
 
 
 			}
+			connection.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -94,6 +101,8 @@ public class VehicleDao {
 
 				vehicles.add(new Vehicle(id,constructeur, nb_places));
 			}
+			connection.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
