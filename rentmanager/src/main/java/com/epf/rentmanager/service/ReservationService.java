@@ -96,6 +96,15 @@ public class ReservationService {
             throw new RuntimeException(e);
         }
     }
+    public List<Client> findClientResaByVehicleId(int id_vehicle) throws DaoException{
+        try{
+            return this.reservationDao.findClientResaByVehicleId(id_vehicle);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     public Reservation findResaById(int id) throws ServiceException {
         try{

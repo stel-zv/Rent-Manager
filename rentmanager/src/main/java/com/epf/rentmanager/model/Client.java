@@ -1,6 +1,7 @@
 package com.epf.rentmanager.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Client{
 
@@ -38,6 +39,19 @@ public class Client{
                 ", email='" + email + '\'' +
                 ", naissance=" + naissance +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id && Objects.equals(nom, client.nom) && Objects.equals(prenom, client.prenom) && Objects.equals(email, client.email) && Objects.equals(naissance, client.naissance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, prenom, email, naissance);
     }
 
     public long getId() {

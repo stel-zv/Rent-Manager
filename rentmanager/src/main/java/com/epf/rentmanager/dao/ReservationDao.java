@@ -176,6 +176,18 @@ public class ReservationDao {
 
 	}
 
+	public List<Client> findClientResaByVehicleId(int vehicleId) throws DaoException{
+		List <Reservation> reservations = findResaByVehicleId(vehicleId);
+		List <Client> clients= new ArrayList<>();
+		for (int i=0; i<reservations.size();i++){
+			Client client = new Client();
+			client = reservations.get(i).getClient();
+			clients.add(client);
+		}
+		List<Client> newclients = new ArrayList<>(new LinkedHashSet<>(clients));
+		return newclients;
+
+	}
 	public List<Reservation> findAll() throws DaoException {
 		List <Reservation> reservations = new ArrayList <Reservation>();
 		try {
