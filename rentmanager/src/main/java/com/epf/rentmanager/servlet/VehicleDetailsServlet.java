@@ -19,7 +19,7 @@ import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-@WebServlet(name = "VehicleDetailServlet", urlPatterns = "/cars/details")
+@WebServlet(name = "VehicleDetailsServlet", urlPatterns = "/cars/details")
 public class VehicleDetailsServlet extends HttpServlet {
 
     @Autowired
