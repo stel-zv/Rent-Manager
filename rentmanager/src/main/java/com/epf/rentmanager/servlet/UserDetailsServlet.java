@@ -47,6 +47,9 @@ public class UserDetailsServlet extends HttpServlet {
             request.setAttribute("reservations", reservationService.findResaByClientId(clientId));
             request.setAttribute("vehicles",reservationService.findVehicleResaByClientId(clientId));
 
+            request.setAttribute("nb_vehicles",reservationService.findVehicleResaByClientId(clientId).size());
+            request.setAttribute("nb_reservations",reservationService.findResaByClientId(clientId).size());
+
         } catch (ServiceException e) {
             e.printStackTrace();
         } catch (DaoException e) {

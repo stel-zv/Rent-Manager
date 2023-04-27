@@ -20,14 +20,14 @@
                     <!-- Profile Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <h3 class="profile-username text-center">${client.prenom} ${client.nom} ${client.email}</h3>
+                            <h3 class="profile-username text-center">${vehicle.constructeur} ${vehicle.nb_places} </h3>
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Reservation(s)</b> <a class="pull-right">${nb_reservations}</a>
+                                    <b>Reservation(s)</b> <a class="pull-right">2</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Voiture(s)</b> <a class="pull-right">${nb_vehicles}</a>
+                                    <b>Client(s)</b> <a class="pull-right">3</a>
                                 </li>
                             </ul>
                         </div>
