@@ -30,35 +30,35 @@
 
                              <div class="form-group">
                                     <div class="col-sm-10">
-                                        <input type="hidden" class="form-control" id="id" name="id" value="${client.id}">
+                                        <input type="hidden" class="form-control" id="id" name="id" value="${client.id}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="last_name" class="col-sm-2 control-label">Nom : ${client.nom} </label>
+                                    <label for="last_name" class="col-sm-2 control-label">Nom</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="last_name" name="last_name" value="${client.nom}" >
+                                        <input type="text" class="form-control" id="last_name" name="last_name" value="${client.nom}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="first_name" class="col-sm-2 control-label">Prenom : ${client.prenom} </label>
+                                    <label for="first_name" class="col-sm-2 control-label">Prenom</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="first_name" name="first_name" value="${client.prenom}" >
+                                        <input type="text" class="form-control" id="first_name" name="first_name" value="${client.prenom}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">Email : ${client.email} </label>
+                                    <label for="email" class="col-sm-2 control-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email" value="${client.email}" >
+                                        <input type="email" class="form-control" id="email" name="email" value="${client.email}" required>
                                     </div>
                                 </div>
 
                                  <div class="form-group">
-                                    <label for="naissance" class="col-sm-2 control-label">Date de naissance : ${client.naissance} </label>
+                                    <label for="naissance" class="col-sm-2 control-label">Date de naissance</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="naissance" value="${client.naissance}" name="naissance">
+                                        <input type="date" class="form-control" id="naissance" value="${client.naissance}" name="naissance" required>
                                     </div>
                                 </div>
 

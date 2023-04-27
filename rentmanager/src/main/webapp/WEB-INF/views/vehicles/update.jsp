@@ -14,7 +14,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Utilisateurs
+                Voitures
             </h1>
         </section>
 
@@ -24,35 +24,34 @@
                 <div class="col-md-12">
                     <!-- Horizontal Form -->
                     <div class="box">
-                        <!-- form start -->
-                        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/users/create">
 
+                        <form class="form-horizontal" method="post" action ="${pageContext.request.contextPath}/cars/update">
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label for="last_name" class="col-sm-2 control-label">Nom</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nom" required>
-                                    </div>
 
-                                </div>
+                              <div class="form-group">
+                                  <div class="col-sm-10">
+                                      <input type="hidden" class="form-control" id="id" name="id" value="${vehicle.id}">
+                                  </div>
+                               </div>
                                 <div class="form-group">
-                                    <label for="first_name" class="col-sm-2 control-label">Prenom</label>
+                                    <label for="manufacturer" class="col-sm-2 control-label">Marque</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        <input type="text" class="form-control" id="manufacturer" name="manufacturer" value="${vehicle.constructeur}"required>
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
-                                    <label for="naissance" class="col-sm-2 control-label">Date de naissance</label>
+                                <!--<div class="form-group">
+                                    <label for="modele" class="col-sm-2 control-label">Modele</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="naissance" name="naissance" required>
+                                        <input type="text" class="form-control" id="modele" name="modele" placeholder="Modele" required>
+                                    </div>
+                                </div> -->
+
+                                <div class="form-group">
+                                    <label for="seats" class="col-sm-2 control-label">Nombre de places</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="seats" name="seats" value="${vehicle.nb_places}" required>
                                     </div>
                                 </div>
 

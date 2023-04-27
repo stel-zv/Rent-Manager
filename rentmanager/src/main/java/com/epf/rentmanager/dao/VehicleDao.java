@@ -27,7 +27,9 @@ public class VehicleDao {
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
 	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
 	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
-	
+	private static final String UPDATE_VEHICLE_QUERY = "UPDATE Vehicle SET constructeur = ?, nb_places = ? WHERE id = ?;";
+
+
 	public long create(Vehicle vehicle) throws DaoException {
 		try{
 			Connection connection = ConnectionManager.getConnection();
@@ -42,6 +44,24 @@ public class VehicleDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public long update(Vehicle vehicle) throws DaoException {
+		try{
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement statement = connection.prepareStatement(UPDATE_VEHICLE_QUERY,Statement.RETURN_GENERATED_KEYS);
+
+			statement.setString(1,vehicle.getConstructeur());
+			statement.setInt(2,vehicle.getNb_places());
+			statement.setLong(3,vehicle.getId());
+
+			long key = statement.executeUpdate();
+			connection.close();
+			return key;
+
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}

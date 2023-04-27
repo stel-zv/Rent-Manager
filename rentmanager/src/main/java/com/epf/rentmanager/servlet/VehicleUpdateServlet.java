@@ -22,9 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 
-@WebServlet("/cars/create")
-public class VehicleCreateServlet extends HttpServlet {
-
+@WebServlet(name = "VehicleUpdateServlet", urlPatterns = "/cars/update")
+public class VehicleUpdateServlet extends HttpServlet {
     @Autowired
     VehicleService vehicleService;
 
@@ -39,17 +38,22 @@ public class VehicleCreateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/create.jsp").forward(request, response);
-
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int vehicleId = Integer.parseInt(request.getParameter("id"));
+            request.setAttribute("vehicle", vehicleService.findById(vehicleId));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+        request.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/update.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            Vehicle vehicle = new Vehicle(request.getParameter("manufacturer"),Integer.parseInt(request.getParameter("seats")));
-            System.out.println(vehicle);
-            vehicleService.create(vehicle);
+            Vehicle vehicle = new Vehicle(Integer.parseInt(request.getParameter("id")),request.getParameter("manufacturer"),Integer.parseInt(request.getParameter("seats")));
+            vehicleService.update(vehicle);
         }
         catch (ServiceException e) {
             e.printStackTrace();
