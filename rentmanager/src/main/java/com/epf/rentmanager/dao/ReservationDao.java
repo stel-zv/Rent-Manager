@@ -3,10 +3,12 @@ package com.epf.rentmanager.dao;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+
 
 import com.epf.rentmanager.exception.DaoException;
-import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
@@ -76,8 +78,6 @@ public class ReservationDao {
 		}
 
 	}
-
-
 
 
 	public Reservation findResaById(int Id) throws DaoException {
@@ -161,7 +161,20 @@ public class ReservationDao {
 		return reservations;
 	}
 
+	public List<Vehicle> findVehicleResaByClientId(int clientId) throws DaoException{
+		List <Reservation> reservations = findResaByClientId(clientId);
+		List <Vehicle> vehicles = new ArrayList<>();
+		for (int i=0; i<reservations.size();i++){
+			Vehicle vehicle = new Vehicle();
+			vehicle = reservations.get(i).getVehicle();
+			vehicles.add(vehicle);
+		}
 
+		List<Vehicle> newvehicles = new ArrayList<>(new LinkedHashSet<>(vehicles));
+
+		return newvehicles;
+
+	}
 
 	public List<Reservation> findAll() throws DaoException {
 		List <Reservation> reservations = new ArrayList <Reservation>();

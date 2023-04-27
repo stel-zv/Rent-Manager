@@ -1,5 +1,6 @@
 package com.epf.rentmanager.main;
 import com.epf.rentmanager.configuration.AppConfiguration;
+import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
@@ -20,10 +21,13 @@ public class main {
 
         try {
 
+
+
             ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
             ClientService clientService = context.getBean(ClientService.class);
             VehicleService vehicleService = context.getBean(VehicleService.class);
-           // ReservationService reservationService = context.getBean(ReservationService.class);
+            ReservationService reservationService = context.getBean(ReservationService.class);
+            // ReservationService reservationService = context.getBean(ReservationService.class);
 
             //Date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
@@ -70,10 +74,12 @@ public class main {
            // System.out.println (count_clients);
             //System.out.println (count_vehicles);
 
-           
+           List<Vehicle> vehiclesss = reservationService.findVehicleResaByClientId(1);
 
 
         } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        } catch (DaoException e) {
             throw new RuntimeException(e);
         }
     }
