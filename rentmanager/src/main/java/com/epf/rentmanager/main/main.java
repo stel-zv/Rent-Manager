@@ -19,19 +19,17 @@ import java.time.LocalDate;
 public class main {
     public static void main(String[] args) {
 
-        try {
 
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+        ClientService clientService = context.getBean(ClientService.class);
+        VehicleService vehicleService = context.getBean(VehicleService.class);
+        ReservationService reservationService = context.getBean(ReservationService.class);
+        
+        // ReservationService reservationService = context.getBean(ReservationService.class);
 
-
-            ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
-            ClientService clientService = context.getBean(ClientService.class);
-            VehicleService vehicleService = context.getBean(VehicleService.class);
-            ReservationService reservationService = context.getBean(ReservationService.class);
-            // ReservationService reservationService = context.getBean(ReservationService.class);
-
-            //Date
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-            String date = "16/09/2001";
+        //Date
+        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+            /*String date = "16/09/2001";
 
             //Ajout et suppression client
             LocalDate naissancestella = LocalDate.parse(date, formatter);
@@ -76,11 +74,6 @@ public class main {
 
            List<Vehicle> vehiclesss = reservationService.findVehicleResaByClientId(1);
 
-
-        } catch (ServiceException e) {
-            throw new RuntimeException(e);
-        } catch (DaoException e) {
-            throw new RuntimeException(e);
-        }
+*/
     }
 }
