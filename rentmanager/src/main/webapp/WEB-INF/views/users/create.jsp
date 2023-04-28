@@ -31,35 +31,35 @@
                                 <div class="form-group">
                                     <label for="last_name" class="col-sm-2 control-label">Nom</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nom" required>
+                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nom" required pattern=".{3,}" required>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="first_name" class="col-sm-2 control-label">Prenom</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom" required>
+                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom"required pattern=".{3,}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" onchange="checkEmail()" required>
                                     </div>
                                 </div>
 
                                  <div class="form-group">
                                     <label for="naissance" class="col-sm-2 control-label">Date de naissance</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="naissance" name="naissance" required>
+                                        <input type="date" class="form-control" id="naissance" name="naissance" onchange="isAdult()" required>
                                     </div>
                                 </div>
 
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Ajouter</button>
+                                <button type="submit" class="btn btn-info pull-right" id="addbtn">Ajouter</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
@@ -77,5 +77,36 @@
 <!-- ./wrapper -->
 
 <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
+
+<script>
+
+function isAdult() {
+  var birthday = new Date($('#naissance').val());
+  var eighteenYearsAgo = new Date();
+  eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
+  if (birthday <= eighteenYearsAgo) {
+    $('#addbtn').prop('disabled', false);
+  } else {
+    $('#addbtn').prop('disabled', true);
+    alert('Le client doit etre majeur');
+  }
+}
+
+function checkEmail(){
+    const listEmail = [
+            <c:forEach items="${clients}" var="client" >
+                '${client.email}',
+            </c:forEach>
+                        ];
+    let email = $('#email').val();
+    if (listEmail.includes(email)) {
+        $('#addbtn').prop('disabled', true);
+        alert('Cette adresse e-mail est deja utilisee');}
+    else{
+        $('#addbtn').prop('disabled', false);
+       }
+    }
+
+</script>
 </body>
 </html>

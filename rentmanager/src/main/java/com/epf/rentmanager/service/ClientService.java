@@ -39,7 +39,6 @@ public class ClientService {
 			e.printStackTrace();
 			throw new ServiceException();
 		}
-
 	}
 
 	public long update(Client client) throws ServiceException {
@@ -50,7 +49,6 @@ public class ClientService {
 			e.printStackTrace();
 			throw new ServiceException();
 		}
-
 	}
 
 	public long delete(long id) throws ServiceException {
@@ -61,7 +59,6 @@ public class ClientService {
 			e.printStackTrace();
 			throw new ServiceException();
 		}
-
 	}
 
 	public Client findById(long id) throws ServiceException {

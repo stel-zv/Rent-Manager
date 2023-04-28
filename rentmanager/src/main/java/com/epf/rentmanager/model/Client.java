@@ -1,6 +1,7 @@
 package com.epf.rentmanager.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 public class Client{
@@ -72,6 +73,12 @@ public class Client{
 
     public String getPrenom() {
         return prenom;
+    }
+
+    public int getAge(){
+        Period p = Period.between(this.naissance, LocalDate.now());
+        int years = Math.abs(p.getYears());
+        return years;
     }
 
     public void setPrenom(String prenom) {

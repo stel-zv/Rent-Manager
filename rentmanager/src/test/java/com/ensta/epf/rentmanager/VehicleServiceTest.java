@@ -2,7 +2,6 @@ package com.ensta.epf.rentmanager;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.VehicleService;
 import org.junit.Test;
@@ -20,22 +19,21 @@ import static org.mockito.Mockito.when;
 public class VehicleServiceTest
     {
         @InjectMocks
-        private VehicleService clientService;
+        private VehicleService vehicleService;
         @Mock
-        private VehicleDao clientDao;
+        private VehicleDao vehicleDao;
 
         @Test
         public void findAll_should_fail_when_dao_throws_exception() throws DaoException {
-        when(this.clientDao.findAll()).thenThrow(DaoException.class);
-        assertThrows(ServiceException.class, () -> clientService.findAll());
-    }
+        when(this.vehicleDao.findAll()).thenThrow(DaoException.class);
+        assertThrows(ServiceException.class, () -> vehicleService.findAll());
+        }
+
         @Test
         public void create_should_fail_when_dao_throws_exception() throws DaoException {
-        Vehicle vehicle = new Vehicle();
-        when(this.clientDao.create(isA(Vehicle.class))).thenThrow(DaoException.class);
-        assertThrows(ServiceException.class, () -> clientService.create(vehicle));
-    }
-
-
+            Vehicle vehicle = new Vehicle();
+            when(this.vehicleDao.create(isA(Vehicle.class))).thenThrow(DaoException.class);
+            assertThrows(ServiceException.class, () -> vehicleService.create(vehicle));
+        }
     }
 

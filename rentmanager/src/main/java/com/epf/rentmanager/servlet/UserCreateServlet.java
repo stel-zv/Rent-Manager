@@ -38,6 +38,12 @@ public class UserCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        try {
+           List<Client> clients = clientService.findAll();
+            request.setAttribute("clients", clients);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
 
     }
@@ -47,7 +53,6 @@ public class UserCreateServlet extends HttpServlet {
         try{
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-d");
             Client client = new Client(request.getParameter("last_name"),request.getParameter("first_name"),request.getParameter("email"), LocalDate.parse(request.getParameter("naissance"), format));
-            System.out.println(client);
             clientService.create(client);
         }
         catch (ServiceException e) {

@@ -17,13 +17,16 @@ import java.util.List;
 import java.time.LocalDate;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ServiceException {
 
 
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
         ClientService clientService = context.getBean(ClientService.class);
         VehicleService vehicleService = context.getBean(VehicleService.class);
         ReservationService reservationService = context.getBean(ReservationService.class);
+
+        Client stella = null;
+        clientService.create(stella);
 
         // ReservationService reservationService = context.getBean(ReservationService.class);
 
