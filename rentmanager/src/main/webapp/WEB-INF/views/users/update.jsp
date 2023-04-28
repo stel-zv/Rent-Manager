@@ -44,13 +44,13 @@
                                 <div class="form-group">
                                     <label for="first_name" class="col-sm-2 control-label">Prenom</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="first_name" name="first_name" value="${client.prenom}" required>
+                                        <input type="text" class="form-control" id="first_name" name="first_name" value="${client.prenom}" required pattern=".{3,}"required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-10">
-                                        <input type="hidden" class="form-control" id="email" name="email" value="${client.email}" required>
+                                        <input type="hidden" class="form-control" id="email" name="email" value="${client.email}" required pattern=".{3,}" required>
                                     </div>
                                 </div>
 

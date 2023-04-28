@@ -72,21 +72,21 @@
                                 <div class="form-group">
                                     <label for="begin" class="col-sm-2 control-label">Date de debut</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="begin" name="begin" value ="${reservation.debut}" required>
+                                        <input type="date" class="form-control" id="begin" name="begin" value ="${reservation.debut}"  onchange="checkDate('end')" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="end" class="col-sm-2 control-label">Date de fin</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="end" name="end" value="${reservation.fin}" required>
+                                        <input type="date" class="form-control" id="end" name="end" value="${reservation.fin}"  onchange="checkDate('begin')"required>
                                     </div>
                                 </div>
 
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Modifier la reservation</button>
+                                <button type="submit" class="btn btn-info pull-right" id="addbtn" >Modifier la reservation</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
@@ -107,10 +107,29 @@
 <script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
     $(function () {
         $('[data-mask]').inputmask()
     });
+
+    function checkDate(id){
+      if ($('#'+id).val()){
+          let dateEnd = new Date($('#end').val());
+          let dateBegin = new Date($('#begin').val());
+          let diffInDay= Math.ceil(Math.abs(dateBegin - dateEnd) / (1000 * 60 * 60 * 24));
+          if(diffInDay>7){
+                $("#addbtn").prop("disabled", true);
+          } else {
+                $("#addbtn").prop("disabled", false);
+          }
+      }
+
+    }
+
+
+
 </script>
 </body>
 </html>
