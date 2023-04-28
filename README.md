@@ -22,6 +22,6 @@ Taper la commande `mvn tomcat7:run`  et se rendre à l’adresse http://localhos
 
 ## Pistes d’amélioration
 	
-- Contraintes non réussis
+- Contraintes non fonctionnelles
 - Barre de recherche pour rechercher clients par nom
--  Barre de recherche pour rechercher véhicule par sa marque ou son modèle
+- Barre de recherche pour rechercher véhicule par sa marque ou son modèle
