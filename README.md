@@ -4,7 +4,7 @@
 
 Ce projet utilise Maven en système de construction et Tomcat comme serveur web.
 Pour lancer l’application web :
-Taper la commande `mvn tomcat7:run et se rendre à l’adresse http://localhost:8080/rentmanager.
+Taper la commande `mvn tomcat7:run` et se rendre à l’adresse http://localhost:8080/rentmanager.
 
 ## Contraintes fonctionnelles
 
