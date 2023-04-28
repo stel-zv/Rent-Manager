@@ -81,15 +81,16 @@
 <script>
 
 function isAdult() {
-  var birthday = new Date($('#naissance').val());
-  var eighteenYearsAgo = new Date();
-  eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
-  if (birthday <= eighteenYearsAgo) {
-    $('#addbtn').prop('disabled', false);
-  } else {
-    $('#addbtn').prop('disabled', true);
-    alert('Le client doit etre majeur');
-  }
+     let birthday = new Date($('#naissance').val());
+     let eighteenYearsAgo = new Date();
+     eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
+     if (birthday <= eighteenYearsAgo) {
+        $('#addbtn').prop('disabled', false);
+     }
+     else {
+        $('#addbtn').prop('disabled', true);
+        alert('Le client doit etre majeur');
+      }
 }
 
 function checkEmail(){

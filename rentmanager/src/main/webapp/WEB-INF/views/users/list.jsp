@@ -28,8 +28,8 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Nom</th>
                                     <th>Prenom</th>
+                                    <th>Nom</th>
                                     <th>Email</th>
                                     <th>Date de naissance</th>
                                     <th>Action</th>

@@ -33,7 +33,7 @@
                                     <div class="col-sm-10">
                                         <select class="form-control" id="voiture" name="voiture">
                                             <c:forEach items ="${vehicles}" var ="vehicle">
-                                                <option value="${vehicle.id}" > ${vehicle.constructeur} </option>
+                                                <option value="${vehicle.id}" > ${vehicle.constructeur} ${vehicle.modele}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -98,19 +98,20 @@
     });
 
     function checkDate(id){
-
-          if ($('#'+id).val()){
-              let dateEnd = new Date($('#end').val());
-              let dateBegin = new Date($('#begin').val());
-              let diffInDay= Math.ceil(Math.abs(dateBegin - dateEnd) / (1000 * 60 * 60 * 24));
-              if(diffInDay>7){
-                    $("#addbtn").prop("disabled", true);
-              } else {
-                    $("#addbtn").prop("disabled", false);
-              }
+      if ($('#'+id).val()){
+          let dateEnd = new Date($('#end').val());
+          let dateBegin = new Date($('#begin').val());
+          let diffInDay= Math.ceil(Math.abs(dateBegin - dateEnd) / (1000 * 60 * 60 * 24));
+          if(diffInDay>7){
+                $("#addbtn").prop("disabled", true);
+          } else {
+                $("#addbtn").prop("disabled", false);
           }
+      }
 
     }
+
+
 
 </script>
 </body>

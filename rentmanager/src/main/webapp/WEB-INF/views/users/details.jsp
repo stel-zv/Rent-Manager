@@ -71,12 +71,14 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Constructeur</th>
+                                            <th>Modele</th>
                                             <th style=>Nombre de places</th>
                                         </tr>
                                         <c:forEach items="${vehicles}" var="vehicle">
                                              <tr>
                                                  <td>${vehicle.id}.</td>
                                                  <td>${vehicle.constructeur}</td>
+                                                 <td>${vehicle.modele}</td>
                                                  <td>${vehicle.nb_places}</td>
                                              </tr>
                                         </c:forEach>

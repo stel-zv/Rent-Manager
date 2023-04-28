@@ -33,7 +33,6 @@
                                     <input type="hidden" class="form-control" id="id" name="id" value="${reservation.id}" required>
                                 </div>
                               </div>
-
                                 <div class="form-group">
                                     <label for="car" class="col-sm-2 control-label">Voiture</label>
                                     <div class="col-sm-10">

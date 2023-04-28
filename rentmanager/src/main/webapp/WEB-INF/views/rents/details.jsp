@@ -62,11 +62,13 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Constructeur</th>
+                                            <th>Modele</th>
                                             <th style=>Nombre de places</th>
                                         </tr>
                                          <tr>
                                              <td>${reservation.vehicle.id}.</td>
                                              <td>${reservation.vehicle.constructeur}</td>
+                                             <td>${reservation.vehicle.modele}</td>
                                              <td>${reservation.vehicle.nb_places}</td>
                                          </tr>
                                     </table>

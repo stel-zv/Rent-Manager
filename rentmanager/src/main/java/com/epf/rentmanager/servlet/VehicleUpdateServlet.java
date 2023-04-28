@@ -52,7 +52,7 @@ public class VehicleUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            Vehicle vehicle = new Vehicle(Integer.parseInt(request.getParameter("id")),request.getParameter("manufacturer"),Integer.parseInt(request.getParameter("seats")));
+            Vehicle vehicle = new Vehicle(Integer.parseInt(request.getParameter("id")),request.getParameter("manufacturer"),request.getParameter("modele"),Integer.parseInt(request.getParameter("seats")));
             vehicleService.update(vehicle);
         }
         catch (ServiceException e) {

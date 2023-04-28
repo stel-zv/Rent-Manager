@@ -7,23 +7,24 @@ public class Vehicle {
     private long id;
     private String constructeur;
     private int nb_places;
+    private String modele;
 
 
     public Vehicle() {
     }
 
-    public Vehicle(String constructeur, int nb_places) {
+    public Vehicle(String constructeur,String modele, int nb_places) {
         this.constructeur = constructeur;
+        this.modele = modele;
         this.nb_places = nb_places;
     }
 
-    public Vehicle(long id, String constructeur, int nb_places) {
+    public Vehicle(long id, String constructeur, String modele, int nb_places) {
         this.id = id;
         this.constructeur = constructeur;
-        //this.modele = modele;
+        this.modele = modele;
         this.nb_places = nb_places;
     }
-
 
 
     @Override
@@ -32,6 +33,7 @@ public class Vehicle {
                 "id=" + id +
                 ", constructeur='" + constructeur + '\'' +
                 ", nb_places=" + nb_places +
+                ", modele='" + modele + '\'' +
                 '}';
     }
 
@@ -40,12 +42,12 @@ public class Vehicle {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vehicle vehicle = (Vehicle) o;
-        return id == vehicle.id && nb_places == vehicle.nb_places && Objects.equals(constructeur, vehicle.constructeur);
+        return id == vehicle.id && nb_places == vehicle.nb_places && Objects.equals(constructeur, vehicle.constructeur) && Objects.equals(modele, vehicle.modele);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, constructeur, nb_places);
+        return Objects.hash(id, constructeur, nb_places, modele);
     }
 
     public long getId() {
@@ -71,6 +73,16 @@ public class Vehicle {
     public void setNb_places(int nb_places) {
         this.nb_places = nb_places;
     }
+
+
+    public String getModele() {
+        return modele;
+    }
+
+    public void setModele(String modele) {
+        this.modele = modele;
+    }
 }
+
 
 

@@ -23,11 +23,11 @@ public class VehicleDao {
 		return instance;
 	}*/
 	
-	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
+	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
-	private static final String UPDATE_VEHICLE_QUERY = "UPDATE Vehicle SET constructeur = ?, nb_places = ? WHERE id = ?;";
+	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle WHERE id=?;";
+	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle;";
+	private static final String UPDATE_VEHICLE_QUERY = "UPDATE Vehicle SET constructeur = ?, modele = ?, nb_places = ? WHERE id = ?;";
 
 
 	public long create(Vehicle vehicle) throws DaoException {
@@ -36,7 +36,8 @@ public class VehicleDao {
 			PreparedStatement statement = connection.prepareStatement(CREATE_VEHICLE_QUERY,Statement.RETURN_GENERATED_KEYS);
 
 			statement.setString(1,vehicle.getConstructeur());
-			statement.setInt(2,vehicle.getNb_places());
+			statement.setString(2,vehicle.getModele());
+			statement.setInt(3,vehicle.getNb_places());
 
 			long key = statement.executeUpdate();
 			connection.close();
@@ -54,8 +55,9 @@ public class VehicleDao {
 			PreparedStatement statement = connection.prepareStatement(UPDATE_VEHICLE_QUERY,Statement.RETURN_GENERATED_KEYS);
 
 			statement.setString(1,vehicle.getConstructeur());
-			statement.setInt(2,vehicle.getNb_places());
-			statement.setLong(3,vehicle.getId());
+			statement.setString(2,vehicle.getModele());
+			statement.setInt(3,vehicle.getNb_places());
+			statement.setLong(4,vehicle.getId());
 
 			long key = statement.executeUpdate();
 			connection.close();
@@ -92,9 +94,10 @@ public class VehicleDao {
 
 			if (rs.next()) {
 				String constructeur = rs.getString("constructeur");
+				String modele = rs.getString("modele");
 				int nb_places = rs.getInt("nb_places");
 
-				vehicle = new Vehicle(id,constructeur, nb_places);
+				vehicle = new Vehicle(id,constructeur,modele, nb_places);
 
 
 			}
@@ -117,9 +120,10 @@ public class VehicleDao {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String constructeur = rs.getString("constructeur");
+				String modele = rs.getString("modele");
 				int nb_places = rs.getInt("nb_places");
 
-				vehicles.add(new Vehicle(id,constructeur, nb_places));
+				vehicles.add(new Vehicle(id,constructeur,modele, nb_places));
 			}
 			connection.close();
 

@@ -40,12 +40,12 @@
                                     </div>
                                 </div>
 
-                                <!--<div class="form-group">
+                                <div class="form-group">
                                     <label for="modele" class="col-sm-2 control-label">Modele</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="modele" name="modele" placeholder="Modele" required>
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <div class="form-group">
                                     <label for="seats" class="col-sm-2 control-label">Nombre de places</label>
